@@ -40,6 +40,43 @@ In a simulated audit of 1,000 ad-delivery events, the following disparities were
 
 ---
 
+⚠️ Known Limitations & Future Roadmap
+While this framework provides a robust baseline for Ad-Tech compliance, it is an evolving tool.
+
+1. Metric Expansion: Beyond Demographic Parity
+
+Current State: The audit currently focuses on Demographic Parity, which ensures equal selection rates across groups.
+
+Limitation: This does not account for "Qualified Interest." If one demographic is naturally more interested in a specific product, forcing parity might hurt ad performance.
+
+Roadmap: Implement Equalized Odds to ensure that the "True Positive Rate" is balanced, protecting both fairness and business ROI.
+
+2. Intersectionality Audit
+
+Current State: The script evaluates single attributes like 'Gender'.
+
+Limitation: Bias often hides in the intersection of traits (e.g., Age + Gender + Income).
+
+
+Roadmap: Expand the MetricFrame to handle multi-index sensitive features to detect "compounded bias".
+
+3. Mitigation Trade-offs
+
+Current State: The project suggests Reweighing as a primary mitigation.
+
+Limitation: Aggressive reweighing can sometimes lead to "Model Variance," where the model becomes less stable.
+
+
+Roadmap: Integrate a Pareto Frontier Analysis to visualize the trade-off between "Fairness" and "Accuracy," allowing stakeholders to make an informed, risk-based decision.
+
+4. Automated Documentation (Model Cards)
+
+Current State: Model Cards are currently updated manually.
+
+
+Roadmap: Automate the export of Fairlearn metrics directly into the Model Card (MCMR) JSON to ensure "Live Transparency" during every deployment cycle.
+
+
 ## 🚀 How to Use This Repository
 
 1. **Read the Risk Memo:** Start in `01_Risk_Assessment/` to understand the business problem.
