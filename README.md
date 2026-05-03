@@ -1,96 +1,148 @@
-# Ad-Tech AI Safety & Governance Framework
+# Ad-Tech AI Governance Framework
 
-### Bridging Content Integrity and Algorithmic Trust
+> **An open-source governance framework for responsible, fair, and transparent AI in digital advertising.**
 
-## 📌 Executive Summary
-
-As AI-driven ad generation scales to thousands of variants per week, traditional manual curation reaches a breaking point. This project presents a **Full-Lifecycle Governance Framework** designed to manage the transition from manual KPO-based policy enforcement to automated, risk-aware AI oversight.
-
-By implementing **NIST AI RMF** functions (Map, Measure, Manage), this framework identified a **14% demographic parity gap** in automated targeting and established the guardrails necessary for compliant, high-scale digital marketing.
+Built from 3.5 years of hands-on adtech data quality and content governance work at a global KPO. This framework maps real-world adtech workflows to responsible AI principles, emerging policy standards, and practical audit tools.
 
 ---
 
-## 📂 Project Structure
+## 🧭 Why this exists
 
-* `01_Risk_Assessment/`: Initial discovery memos and threat models for GenAI ad pipelines.
-* `02_Policy_Architecture/`: Formal Responsible AI policies aligned with **ISO 42001** and the **Indian DPDP Act**.
-* `03_Audit_Scripts/`: Python notebooks utilizing `Fairlearn` for quantitative bias detection.
-* `04_Incident_Response/`: Post-mortem reports and "Kill Switch" playbooks for model failures.
+AI systems power nearly every layer of digital advertising — ad targeting, content classification, title generation, bid optimization, and audience profiling. Yet most adtech AI systems operate with minimal governance, transparency, or fairness oversight.
 
----
+This framework addresses that gap. It translates established responsible AI principles (NIST AI RMF, EU AI Act, IEEE Ethics Guidelines) into practical, actionable governance tools built specifically for the adtech context.
 
-## 🛠️ Core Competencies Demonstrated
-
-* **Regulatory Compliance:** Mapping AI outputs to the **EU AI Act** and **ASCI Guidelines**.
-* **Algorithmic Fairness:** Quantifying bias using Demographic Parity and Equalized Odds.
-* **Risk Mitigation:** Designing **Human-in-the-loop (HITL)** triggers for high-sensitivity ad verticals (Finance/Healthcare).
-* **Security & Red Teaming:** Identifying prompt-injection vulnerabilities in creative engines.
+**The problem this solves:**
+- Ad AI systems can embed and amplify bias (e.g. showing high-paying job ads to men more than women)
+- Title and content classification models produce inconsistent, policy-violating outputs at scale
+- Most adtech teams have no structured audit process for AI-generated content quality or fairness
+- Regulatory pressure (EU AI Act August 2026) is making AI governance in advertising a compliance requirement
 
 ---
 
-## 📊 Key Results from Technical Audit
+## 📐 Framework Structure
 
-In a simulated audit of 1,000 ad-delivery events, the following disparities were identified using the provided Python scripts:
-
-| Metric | Pre-Mitigation | Post-Mitigation | Status |
-| --- | --- | --- | --- |
-| **Demographic Parity Diff** | 0.142 | 0.021 | ✅ PASS |
-| **Selection Rate (Female)** | 21% | 29% | ✅ IMPROVED |
-| **Selection Rate (Male)** | 35% | 31% | ✅ STABILIZED |
-
----
-
-⚠️ Known Limitations & Future Roadmap
-While this framework provides a robust baseline for Ad-Tech compliance, it is an evolving tool.
-
-1. Metric Expansion: Beyond Demographic Parity
-
-Current State: The audit currently focuses on Demographic Parity, which ensures equal selection rates across groups.
-
-Limitation: This does not account for "Qualified Interest." If one demographic is naturally more interested in a specific product, forcing parity might hurt ad performance.
-
-Roadmap: Implement Equalized Odds to ensure that the "True Positive Rate" is balanced, protecting both fairness and business ROI.
-
-2. Intersectionality Audit
-
-Current State: The script evaluates single attributes like 'Gender'.
-
-Limitation: Bias often hides in the intersection of traits (e.g., Age + Gender + Income).
-
-
-Roadmap: Expand the MetricFrame to handle multi-index sensitive features to detect "compounded bias".
-
-3. Mitigation Trade-offs
-
-Current State: The project suggests Reweighing as a primary mitigation.
-
-Limitation: Aggressive reweighing can sometimes lead to "Model Variance," where the model becomes less stable.
-
-
-Roadmap: Integrate a Pareto Frontier Analysis to visualize the trade-off between "Fairness" and "Accuracy," allowing stakeholders to make an informed, risk-based decision.
-
-4. Automated Documentation (Model Cards)
-
-Current State: Model Cards are currently updated manually.
-
-
-Roadmap: Automate the export of Fairlearn metrics directly into the Model Card (MCMR) JSON to ensure "Live Transparency" during every deployment cycle.
-
-
-## 🚀 How to Use This Repository
-
-1. **Read the Risk Memo:** Start in `01_Risk_Assessment/` to understand the business problem.
-2. **Review the Policy:** See `02_Policy_Architecture/` for the regulatory solution.
-3. **Run the Audit:** Open the Jupyter Notebook in `03_Audit_Scripts/` to see the code in action.
-4. **Analyze the Failure:** Read the Post-Mortem in `04_Incident_Response/` to see how to handle a live "Governance Incident."
+```
+Ad-Tech-AI-Governance-Framework/
+│
+├── 📋 Policy Templates/
+│   ├── ad-content-policy-template.md       # Content standards and prohibited categories
+│   ├── ai-fairness-policy.md               # Bias and non-discrimination principles
+│   └── transparency-disclosure-template.md # User-facing AI disclosure guidelines
+│
+├── 🔍 Audit Checklists/
+│   ├── content-quality-audit.md            # Ad title and metadata quality checklist
+│   ├── bias-detection-checklist.md         # Systematic bias review process
+│   └── compliance-review-checklist.md      # EU AI Act and NIST RMF alignment check
+│
+├── ⚠️ Risk Classification/
+│   ├── risk-taxonomy.md                    # Adtech AI risk categories and severity levels
+│   └── risk-assessment-template.md         # Per-system risk assessment process
+│
+├── 📊 Governance Workflows/
+│   ├── content-review-workflow.md          # End-to-end content governance process
+│   ├── incident-response-playbook.md       # AI output failure response steps
+│   └── model-monitoring-guidelines.md      # Ongoing oversight and drift detection
+│
+└── 📚 Reference/
+    ├── regulatory-mapping.md               # NIST RMF · EU AI Act · IEEE mapping
+    └── glossary.md                         # Key terms for adtech AI governance
+```
 
 ---
 
-## 📧 Contact & Networking
+## 🎯 Key Governance Areas Covered
 
-I am an **AI Governance Analyst** (formerly KPO Analyst at Virtusa) passionate about building trustworthy AI systems.
+### 1. Bias & Fairness Auditing
+Systematic process for identifying bias patterns in ad content classification, targeting algorithms, and title variant selection. Draws directly from real classification error analysis in large-scale adtech datasets.
 
-* **LinkedIn:** https://www.linkedin.com/in/udaya-manisha-iskala-5b58a9241/
-* **Email:** manishaiskala008@gmail.com
+**Covers:**
+- Demographic bias in ad targeting
+- Content classification consistency across protected categories
+- Title variant fairness (gender, age, income-level disparities)
+- Audit trail documentation
+
+### 2. Content Policy Governance
+Structured framework for maintaining ad content quality and policy compliance at scale — based on hands-on experience auditing retail ad titles and metadata.
+
+**Covers:**
+- Policy violation classification taxonomy
+- Content quality SOP templates
+- Review workflow for AI-generated ad content
+- Escalation and remediation processes
+
+### 3. EU AI Act Alignment
+Adtech AI systems used in targeting, profiling, and content recommendation are classified as **high-risk** under Annex III of the EU AI Act (full enforcement: **August 2, 2026**). This framework maps adtech workflows to the Act's core requirements.
+
+**Mapped obligations:**
+- Risk management system (Article 9)
+- Data governance and quality (Article 10)
+- Transparency and human oversight (Articles 13–14)
+- Bias testing and accuracy documentation (Article 15)
+
+### 4. NIST AI RMF Alignment
+Governance structure aligned to NIST's four-function framework:
+
+| Function | Application in Adtech |
+|---|---|
+| **Govern** | Policy ownership, accountability structures, escalation paths |
+| **Map** | Adtech AI system inventory, risk classification, stakeholder mapping |
+| **Measure** | Bias metrics, content quality KPIs, audit frequency |
+| **Manage** | Incident response, remediation, ongoing monitoring |
 
 ---
+
+## 🔄 How to Use This Framework
+
+**For AI ethics practitioners:**
+Use the audit checklists and risk classification taxonomy to assess existing adtech AI systems for fairness, transparency, and policy compliance.
+
+**For governance and compliance teams:**
+Use the policy templates and regulatory mapping to build internal AI governance documentation aligned to EU AI Act requirements.
+
+**For product and data teams:**
+Use the monitoring guidelines and incident response playbook to embed governance into your AI development and deployment workflow.
+
+**For researchers:**
+This framework provides a practical reference for how adtech-specific AI governance challenges differ from general AI governance — particularly around content classification, targeting fairness, and real-time model behavior.
+
+---
+
+## 📏 Regulatory Alignment Summary
+
+| Standard | Coverage | Status |
+|---|---|---|
+| EU AI Act (2024/1689) | High-risk system obligations, transparency, bias testing | ✅ Mapped |
+| NIST AI RMF (2023) | Govern, Map, Measure, Manage functions | ✅ Mapped |
+| IEEE 7000 Series | Ethics by design principles | ✅ Referenced |
+| GDPR / Data Privacy | Data governance and consent in adtech | ✅ Referenced |
+
+---
+
+## 👤 About the Author
+
+**UdayaManisha Iskala** — KPO Analyst at Virtusa (3.5 years), specializing in retail ad content quality, title variant auditing, and data governance at scale.
+
+This framework was built to bridge the gap between day-to-day adtech operations and the formal responsible AI principles that are increasingly required by regulators and enterprise governance teams.
+
+- 🎓 Elements of AI — University of Helsinki
+- 🎓 AI Ethics — Alison
+- 📚 AI Governance Professional (AIGP) — IAPP (in progress)
+- 💼 [LinkedIn](https://www.linkedin.com/in/udayamanisha-iskala-5b58a9241/) 
+---
+
+## 🤝 Contributing
+
+This is a living framework. Contributions, issue reports, and suggestions are welcome — especially from practitioners with adtech, content moderation, trust & safety, or AI policy backgrounds.
+
+Please open an issue or pull request with your proposed addition.
+
+---
+
+## 📄 License
+
+MIT License — free to use, adapt, and build on with attribution.
+
+---
+
+> *This framework is designed for practitioners, not just researchers. Every checklist, template, and workflow here was shaped by real experience auditing ad content at scale — not just theory.*
